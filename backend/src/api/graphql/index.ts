@@ -1,1 +1,2 @@
-// export * from "./Territory";
+export * from "./Territory";
+export * from "./User";

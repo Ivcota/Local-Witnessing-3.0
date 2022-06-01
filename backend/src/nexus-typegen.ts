@@ -83,6 +83,20 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Query: {};
+  Territory: { // root type
+    id: string; // ID!
+    name: string; // String!
+    userId?: string | null; // String
+  }
+  User: { // root type
+    email: string; // String!
+    firstName?: string | null; // String
+    id: string; // ID!
+    isAdmin: boolean; // Boolean!
+    lastName?: string | null; // String
+    password: string; // String!
+    phone?: number | null; // Int
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -97,17 +111,56 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    ok: boolean; // Boolean!
+    GetAllTerritories: Array<NexusGenRootTypes['Territory'] | null> | null; // [Territory]
+    SingleTerritory: NexusGenRootTypes['Territory'] | null; // Territory
+  }
+  Territory: { // field return type
+    User: NexusGenRootTypes['User'] | null; // User
+    id: string; // ID!
+    name: string; // String!
+    userId: string | null; // String
+  }
+  User: { // field return type
+    email: string; // String!
+    firstName: string | null; // String
+    id: string; // ID!
+    isAdmin: boolean; // Boolean!
+    lastName: string | null; // String
+    password: string; // String!
+    phone: number | null; // Int
+    territories: Array<NexusGenRootTypes['Territory'] | null> | null; // [Territory]
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    ok: 'Boolean'
+    GetAllTerritories: 'Territory'
+    SingleTerritory: 'Territory'
+  }
+  Territory: { // field return type name
+    User: 'User'
+    id: 'ID'
+    name: 'String'
+    userId: 'String'
+  }
+  User: { // field return type name
+    email: 'String'
+    firstName: 'String'
+    id: 'ID'
+    isAdmin: 'Boolean'
+    lastName: 'String'
+    password: 'String'
+    phone: 'Int'
+    territories: 'Territory'
   }
 }
 
 export interface NexusGenArgTypes {
+  Query: {
+    SingleTerritory: { // args
+      id: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
