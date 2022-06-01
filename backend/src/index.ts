@@ -1,10 +1,12 @@
 import { createServer } from "@graphql-yoga/node";
 import express from "express";
+import { context } from "./api/contextModule";
+import { schema } from "./api/schema";
 
 const PORT = process.env.PORT || 4000;
 
 const app = express();
-const graphQLServer = createServer();
+const graphQLServer = createServer({ schema, context });
 
 app.get("/", (req, res) => {
   res.json({
