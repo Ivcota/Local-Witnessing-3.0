@@ -63,3 +63,23 @@ export const CreateAccount = extendType({
     });
   },
 });
+
+export const Me = extendType({
+  type: "Query",
+  definition(t) {
+    t.field("Me", {
+      type: "User",
+      resolve: async (_, __, { req, db }) => {
+        // @ts-ignore
+        const userId = req.session.userId;
+        const user = await db.user.findUnique({
+          where: {
+            id: userId ? userId : "",
+          },
+        });
+
+        return user;
+      },
+    });
+  },
+});

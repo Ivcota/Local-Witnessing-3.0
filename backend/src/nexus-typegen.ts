@@ -116,6 +116,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     GetAllTerritories: Array<NexusGenRootTypes['Territory'] | null> | null; // [Territory]
+    Me: NexusGenRootTypes['User'] | null; // User
     SingleTerritory: NexusGenRootTypes['Territory'] | null; // Territory
   }
   Territory: { // field return type
@@ -142,6 +143,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     GetAllTerritories: 'Territory'
+    Me: 'User'
     SingleTerritory: 'Territory'
   }
   Territory: { // field return type name
