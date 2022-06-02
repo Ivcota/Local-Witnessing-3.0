@@ -26,6 +26,7 @@ scalar Json @specifiedBy(url: "http://www.ecma-international.org/publications/fi
 
 type Mutation {
   CreateUserAccount(email: String!, firstName: String, password: String!): Boolean!
+  Login(email: String!, password: String!): Boolean!
 }
 
 type Query {

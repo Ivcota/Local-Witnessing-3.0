@@ -113,6 +113,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
     CreateUserAccount: boolean; // Boolean!
+    Login: boolean; // Boolean!
   }
   Query: { // field return type
     GetAllTerritories: Array<NexusGenRootTypes['Territory'] | null> | null; // [Territory]
@@ -140,6 +141,7 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     CreateUserAccount: 'Boolean'
+    Login: 'Boolean'
   }
   Query: { // field return type name
     GetAllTerritories: 'Territory'
@@ -169,6 +171,10 @@ export interface NexusGenArgTypes {
     CreateUserAccount: { // args
       email: string; // String!
       firstName?: string | null; // String
+      password: string; // String!
+    }
+    Login: { // args
+      email: string; // String!
       password: string; // String!
     }
   }

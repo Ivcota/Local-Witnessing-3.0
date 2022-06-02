@@ -64,6 +64,33 @@ export const CreateAccount = extendType({
   },
 });
 
+export const Login = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.boolean("Login", {
+      args: {
+        email: User.email.type,
+        password: User.password.type,
+      },
+      resolve: async (_, { email, password }, { db, req }) => {
+        const user = await db.user.findUnique({
+          where: { email },
+        });
+
+        const isMatch = await bcrypt.compare(password, user?.password!);
+
+        if (isMatch) {
+          // @ts-ignore
+          req.session.userId = user?.id;
+          return true;
+        } else {
+          return false;
+        }
+      },
+    });
+  },
+});
+
 export const Me = extendType({
   type: "Query",
   definition(t) {
