@@ -82,6 +82,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Query: {};
   Territory: { // root type
     id: string; // ID!
@@ -110,6 +111,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    CreateUserAccount: boolean; // Boolean!
+  }
   Query: { // field return type
     GetAllTerritories: Array<NexusGenRootTypes['Territory'] | null> | null; // [Territory]
     SingleTerritory: NexusGenRootTypes['Territory'] | null; // Territory
@@ -133,6 +137,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    CreateUserAccount: 'Boolean'
+  }
   Query: { // field return type name
     GetAllTerritories: 'Territory'
     SingleTerritory: 'Territory'
@@ -156,6 +163,13 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    CreateUserAccount: { // args
+      email: string; // String!
+      firstName?: string | null; // String
+      password: string; // String!
+    }
+  }
   Query: {
     SingleTerritory: { // args
       id: string; // String!
