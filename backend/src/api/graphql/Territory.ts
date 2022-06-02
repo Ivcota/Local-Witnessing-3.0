@@ -6,6 +6,18 @@ export const TerritoryObject = objectType({
   definition(t) {
     t.field(Territory.id);
     t.field(Territory.name);
+    t.list.field("addresses", {
+      type: "Address",
+      resolve: async ({ id }, __, { db }) => {
+        const addresses = await db.address.findMany({
+          where: {
+            territoryId: id,
+          },
+        });
+
+        return addresses;
+      },
+    });
     t.field("User", {
       type: "User",
       resolve: async ({ userId }, __, { db }) => {

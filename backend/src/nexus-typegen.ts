@@ -82,6 +82,15 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Address: { // root type
+    address: string; // String!
+    city: string; // String!
+    id: string; // ID!
+    isDoNotCall: boolean; // Boolean!
+    state: string; // String!
+    territoryId?: string | null; // String
+    zip: string; // String!
+  }
   Mutation: {};
   Query: {};
   Territory: { // root type
@@ -111,6 +120,16 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Address: { // field return type
+    address: string; // String!
+    city: string; // String!
+    id: string; // ID!
+    isDoNotCall: boolean; // Boolean!
+    state: string; // String!
+    territory: NexusGenRootTypes['Territory'] | null; // Territory
+    territoryId: string | null; // String
+    zip: string; // String!
+  }
   Mutation: { // field return type
     CreateUserAccount: boolean; // Boolean!
     Login: boolean; // Boolean!
@@ -122,6 +141,7 @@ export interface NexusGenFieldTypes {
   }
   Territory: { // field return type
     User: NexusGenRootTypes['User'] | null; // User
+    addresses: Array<NexusGenRootTypes['Address'] | null> | null; // [Address]
     id: string; // ID!
     name: string; // String!
     userId: string | null; // String
@@ -139,6 +159,16 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Address: { // field return type name
+    address: 'String'
+    city: 'String'
+    id: 'ID'
+    isDoNotCall: 'Boolean'
+    state: 'String'
+    territory: 'Territory'
+    territoryId: 'String'
+    zip: 'String'
+  }
   Mutation: { // field return type name
     CreateUserAccount: 'Boolean'
     Login: 'Boolean'
@@ -150,6 +180,7 @@ export interface NexusGenFieldTypeNames {
   }
   Territory: { // field return type name
     User: 'User'
+    addresses: 'Address'
     id: 'ID'
     name: 'String'
     userId: 'String'

@@ -2,6 +2,17 @@
 ### Do not make changes to this file directly
 
 
+type Address {
+  address: String!
+  city: String!
+  id: ID!
+  isDoNotCall: Boolean!
+  state: String!
+  territory: Territory
+  territoryId: String
+  zip: String!
+}
+
 """
 The `BigInt` scalar type represents non-fractional signed whole numeric values.
 @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
@@ -37,6 +48,7 @@ type Query {
 
 type Territory {
   User: User
+  addresses: [Address]
   id: ID!
   name: String!
   userId: String
