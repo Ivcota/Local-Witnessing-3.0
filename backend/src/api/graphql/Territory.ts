@@ -6,6 +6,7 @@ export const TerritoryObject = objectType({
   definition(t) {
     t.field(Territory.id);
     t.field(Territory.name);
+    t.field(Territory.addresses);
     t.list.field("addresses", {
       type: "Address",
       resolve: async ({ id }, __, { db }) => {

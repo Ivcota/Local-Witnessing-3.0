@@ -58,11 +58,12 @@ model Address {
 }
 
 model Territory {
-  id        String    @id @default(uuid())
-  name      String
-  addresses Address[]
-  User      User?     @relation(fields: [userId], references: [id])
-  userId    String?
+  id          String    @id @default(uuid())
+  name        String
+  addresses   Address[]
+  spreadsheet String?
+  User        User?     @relation(fields: [userId], references: [id])
+  userId      String?
 }
 
 model Note {
